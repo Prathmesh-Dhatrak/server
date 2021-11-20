@@ -18,7 +18,7 @@ const corsOptions = {
 
 //db
 mongoose
-  .connect(process.env.DATABASE, {
+  .connect("mongodb+srv://admin:4J94Bk5tjL86Zn8@ecom-test.bil6s.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", {
     useNewUrlParser: true,
   })
   .then(() => console.log("DB Connection Successfully done"))
