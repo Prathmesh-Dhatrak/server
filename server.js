@@ -2,39 +2,33 @@ const express = require("express");
 const mongoose = require("mongoose");
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
-
-require("dotenv").config();
+const cors = require("cors");
 const { readdirSync } = require("fs");
+require("dotenv").config();
 
-// app process.env.DATABASE
+// app
 const app = express();
 
-const cors = require("cors");
-const corsOptions = {
-  origin: "http://localhost:3000",
-  credentials: true, //access-control-allow-credentials:true
-  optionSuccessStatus: 200,
-};
-
-//db
+// db
 mongoose
-  .connect("mongodb+srv://admin:4J94Bk5tjL86Zn8@ecom-test.bil6s.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", {
+  .connect(process.env.DATABASE, {
     useNewUrlParser: true,
+    useCreateIndex: true,
+    useFindAndModify: false,
+    useUnifiedTopology: true,
   })
-  .then(() => console.log("DB Connection Successfully done"))
-  .catch((err) => console.log(`DB Connection Error ${err}`));
+  .then(() => console.log("DB CONNECTED"))
+  .catch((err) => console.log("DB CONNECTION ERR", err));
 
 // middlewares
-
 app.use(morgan("dev"));
 app.use(bodyParser.json({ limit: "2mb" }));
 app.use(cors());
 
-// routes-middleware
+// routes middleware
 readdirSync("./routes").map((r) => app.use("/api", require("./routes/" + r)));
 
-//port
+// port
+const port = process.env.PORT || 8000;
 
-const port = process.env.PORT || 5000;
-
-app.listen(port, () => console.log(`server is running on port ${port}`));
+app.listen(port, () => console.log(`Server is running on port ${port}`));

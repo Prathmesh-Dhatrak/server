@@ -38,39 +38,32 @@ const productSchema = new mongoose.Schema(
         ref: "Sub",
       },
     ],
-
     quantity: Number,
-
     sold: {
       type: Number,
       default: 0,
     },
-
     images: {
       type: Array,
     },
-
     shipping: {
       type: String,
       enum: ["Yes", "No"],
     },
-
     color: {
       type: String,
-      enum: ["Black", "Brown", "Red", "Silver", "White", "Blue"],
+      enum: ["Black", "Brown", "Silver", "White", "Blue"],
     },
-
     brand: {
       type: String,
-      enum: ["Apple", "Samsung", "Microsoft", "Lenovo", "Asus", "Dell", "HP"],
+      enum: ["Apple", "Samsung", "Microsoft", "Lenovo", "ASUS"],
     },
-
-    /* ratings: [
+    ratings: [
       {
         star: Number,
         postedBy: { type: ObjectId, ref: "User" },
       },
-    ], */
+    ],
   },
   { timestamps: true }
 );
