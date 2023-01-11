@@ -1,10 +1,10 @@
 var admin = require("firebase-admin");
 
-var serviceAccount = require("../config/twometersquareauth-development-firebase-adminsdk-1hnsp-b2284e14fd.json");
+var serviceAccount = require("../config/twometersquare-firebase-adminsdk-o0c29-9ac83e0100.json");
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
-  databaseURL:"https://twometersquareauth-development-default-rtdb.firebaseio.com",
+  databaseURL:"https://twometersquare-default-rtdb.europe-west1.firebasedatabase.app",
 
 });
 
